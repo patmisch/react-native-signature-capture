@@ -69,7 +69,7 @@
 			[titleLabel setText:@"x_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"];
 			[titleLabel setLineBreakMode:NSLineBreakByClipping];
 			[titleLabel setTextAlignment: NSTextAlignmentCenter];
-			[titleLabel setTextColor:[UIColor colorWithRed:200/255.f green:200/255.f blue:200/255.f alpha:1.f]];
+			[titleLabel setTextColor:[UIColor colorWithRed:254/255.f green:139/255.f blue:0/255.f alpha:1.f]];
 			//[titleLabel setBackgroundColor:[UIColor greenColor]];
 			[sign addSubview:titleLabel];
 			
@@ -79,13 +79,14 @@
 			[saveButton addTarget:self action:@selector(onSaveButtonPressed)
 					 forControlEvents:UIControlEventTouchUpInside];
 			[saveButton setTitle:@"Save" forState:UIControlStateNormal];
+            [saveButton setTitleColor:[UIColor colorWithRed:254/255.f green:139/255.f blue:0/255.f alpha:1.f] forState:UIControlStateNormal];
 			
 			CGSize buttonSize = CGSizeMake(80, 55.0);
 			
 			saveButton.frame = CGRectMake(sign.bounds.size.width - buttonSize.width,
 																		0, buttonSize.width, buttonSize.height);
 			[saveButton setBackgroundColor:[UIColor colorWithRed:250/255.f green:250/255.f blue:250/255.f alpha:1.f]];
-			[sign addSubview:saveButton];
+//			[sign addSubview:saveButton];
 			
 			
 			//Clear button
@@ -94,10 +95,10 @@
 			[clearButton addTarget:self action:@selector(onClearButtonPressed)
 						forControlEvents:UIControlEventTouchUpInside];
 			[clearButton setTitle:@"Reset" forState:UIControlStateNormal];
-			
+			[clearButton setTitleColor:[UIColor colorWithRed:254/255.f green:139/255.f blue:0/255.f alpha:1.f] forState:UIControlStateNormal];
 			clearButton.frame = CGRectMake(0, 0, buttonSize.width, buttonSize.height);
 			[clearButton setBackgroundColor:[UIColor colorWithRed:250/255.f green:250/255.f blue:250/255.f alpha:1.f]];
-			[sign addSubview:clearButton];
+//			[sign addSubview:clearButton];
 		}
 		else {
 			
@@ -123,7 +124,7 @@
 			
 			saveButton.frame = CGRectMake(sign.bounds.size.width - buttonSize.width, sign.bounds.size.height - buttonSize.height, buttonSize.width, buttonSize.height);
 			[saveButton setBackgroundColor:[UIColor colorWithRed:250/255.f green:250/255.f blue:250/255.f alpha:1.f]];
-			[sign addSubview:saveButton];
+//			[sign addSubview:saveButton];
 			
 			//Clear button
 			clearButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -135,7 +136,7 @@
 			
 			clearButton.frame = CGRectMake(sign.bounds.size.width - buttonSize.width, 0, buttonSize.width, buttonSize.height);
 			[clearButton setBackgroundColor:[UIColor colorWithRed:250/255.f green:250/255.f blue:250/255.f alpha:1.f]];
-			[sign addSubview:clearButton];
+//			[sign addSubview:clearButton];
 		}
 		
 	}
@@ -188,6 +189,7 @@
 }
 
 -(void) onClearButtonPressed {
+    NSLog(@"what");
 	[self.sign erase];
 }
 

@@ -2,6 +2,8 @@
 #import "RCTBridgeModule.h"
 #import "RCTBridge.h"
 #import "RCTEventDispatcher.h"
+#import "RCTUIManager.h"
+
 
 @implementation RSSignatureViewManager
 
@@ -15,7 +17,7 @@ RCT_EXPORT_VIEW_PROPERTY(square, BOOL)
 
 -(dispatch_queue_t) methodQueue
 {
-	return dispatch_get_main_queue();
+    return _bridge.uiManager.methodQueue;
 }
 
 -(UIView *) view
@@ -32,6 +34,37 @@ RCT_EXPORT_VIEW_PROPERTY(square, BOOL)
 					@"pathName": aTempPath,
 					@"encoded": aEncoded
 					}];
+    
+    
 }
+
+RCT_EXPORT_METHOD(clearSignature:(nonnull NSNumber *)reactTag callback:(RCTResponseSenderBlock)callback) {
+
+    [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *, RSSignatureView *> *viewRegistry) {
+        NSLog(@"%@", viewRegistry);
+        RSSignatureView *view = viewRegistry[reactTag];
+        if (![view isKindOfClass:[RSSignatureView class]]) {
+           NSLog(@"Invalid view returned from registry, expecting MyCoolView, got: %@", view);
+        }
+        // Call your native component's method here
+        [view onClearButtonPressed];
+    }];
+}
+
+RCT_EXPORT_METHOD(saveSignature:(nonnull NSNumber *)reactTag callback:(RCTResponseSenderBlock)callback) {
+    
+    [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *, RSSignatureView *> *viewRegistry) {
+        NSLog(@"%@", viewRegistry);
+        RSSignatureView *view = viewRegistry[reactTag];
+        if (![view isKindOfClass:[RSSignatureView class]]) {
+            NSLog(@"Invalid view returned from registry, expecting MyCoolView, got: %@", view);
+        }
+        // Call your native component's method here
+        [view onSaveButtonPressed];
+    }];
+}
+
+
+
 
 @end

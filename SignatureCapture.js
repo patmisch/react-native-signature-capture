@@ -5,10 +5,12 @@ var React = require('react-native');
 var {
   requireNativeComponent,
   DeviceEventEmitter,
-  View
+  View,
+  NativeModules
 } = React;
 
 var Component = requireNativeComponent('RSSignatureView', null);
+const SignatureFunctions = NativeModules.RSSignatureViewManager;
 
 var styles = {
   signatureBox: {
@@ -30,6 +32,7 @@ var SignatureCapture = React.createClass({
         'onSaveEvent',
         this.props.onSaveEvent
     );
+
   },
 
   componentWillUnmount: function() {
@@ -40,6 +43,7 @@ var SignatureCapture = React.createClass({
     return (
       <View style={styles.container}>
         <Component
+          ref="rssSignView"
           style={styles.signatureBox}
           rotateClockwise={this.props.rotateClockwise}
           square={this.props.square}
