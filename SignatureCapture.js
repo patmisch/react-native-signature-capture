@@ -25,6 +25,7 @@ var styles = {
 };
 
 var subscription;
+var noSigSubscription;
 
 var SignatureCapture = React.createClass({
   componentDidMount: function() {
