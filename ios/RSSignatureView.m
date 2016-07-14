@@ -186,6 +186,9 @@
 		NSString *base64Encoded = [imageData base64EncodedStringWithOptions:0];
 		[self.manager saveImage: tempPath withEncoded:base64Encoded];
 	}
+    else {
+        [self.manager failedToSave];
+    }
 }
 
 -(void) onClearButtonPressed {

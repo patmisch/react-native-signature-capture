@@ -38,6 +38,11 @@ RCT_EXPORT_VIEW_PROPERTY(square, BOOL)
     
 }
 
+-(void) failedToSave {
+    [self.bridge.eventDispatcher
+     sendDeviceEventWithName:@"noSigEvent" body:NULL];
+}
+
 RCT_EXPORT_METHOD(clearSignature:(nonnull NSNumber *)reactTag callback:(RCTResponseSenderBlock)callback) {
 
     [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *, RSSignatureView *> *viewRegistry) {

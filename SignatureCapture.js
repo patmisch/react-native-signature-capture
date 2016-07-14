@@ -32,11 +32,16 @@ var SignatureCapture = React.createClass({
         'onSaveEvent',
         this.props.onSaveEvent
     );
+    noSigSubscription = DeviceEventEmitter.addListener(
+      'noSigEvent',
+      this.props.noSigEvent
+    );
 
   },
 
   componentWillUnmount: function() {
     subscription.remove();
+    noSigSubscription.remove();
   },
 
   render: function() {
